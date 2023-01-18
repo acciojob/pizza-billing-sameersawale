@@ -8,27 +8,41 @@ public class Pizza {
 
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
-        // your code goes here
+
     }
 
     public int getPrice(){
-        return this.price;
+        if(isVeg){
+            return this.price=300;
+        }
+        else
+            return this.price=400;
+
     }
 
     public void addExtraCheese(){
-        // your code goes here
+        price=price+80;
+        return;
     }
 
     public void addExtraToppings(){
-        // your code goes here
+       if(isVeg){
+           price=price+70;
+       }
+       else
+           price=price+120;
+       return;
     }
 
     public void addTakeaway(){
-        // your code goes here
+        price=price+20;
+        return;
     }
 
+
+
     public String getBill(){
-        // your code goes here
+        bill=String.valueOf(price);
         return this.bill;
     }
 }
