@@ -6,43 +6,77 @@ public class Pizza {
     private Boolean isVeg;
     private String bill;
 
+    private int cheese;
+
+    private int toppings;
+
+    boolean isExtraCheeseAdded;
+    boolean isExtraToppingsAdded;
+    boolean isTakeAway;
+    boolean isBillGenerated;
+
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
+        this.isExtraCheeseAdded=false;
+        this.isBillGenerated=false;
+        this.isTakeAway=false;
+        this.isExtraToppingsAdded=false;
+        this.bill="";
+        if(isVeg){
+            this.price=300;
+            this.toppings=70;
 
+        }
+        else {
+            this.price = 400;
+            this.toppings=120;
+        }
+        this.cheese=80;
+        this.bill+="Base Price Of The Pizza: "+this.price+"\n";
     }
 
     public int getPrice(){
-        if(isVeg){
-            return this.price=300;
-        }
-        else
-            return this.price=400;
 
+        return this.price;
     }
 
     public void addExtraCheese(){
-        price=price+80;
-        return;
+        if(!isExtraCheeseAdded){
+            this.price=this.price+cheese;
+            this.isExtraCheeseAdded=true;
+        }
+
     }
 
     public void addExtraToppings(){
-       if(isVeg){
-           price=price+70;
+       if(!isExtraToppingsAdded){
+           this.price=this.price+toppings;
+           isExtraToppingsAdded=true;
        }
-       else
-           price=price+120;
-       return;
+
     }
 
     public void addTakeaway(){
-        price=price+20;
-        return;
+        if(!isTakeAway){
+            this.price=this.price+20;
+            isTakeAway=true;
+        }
+
     }
 
 
 
     public String getBill(){
-        bill=String.valueOf(price);
+       if(!isBillGenerated){
+           if(isExtraCheeseAdded)
+                this.bill+="Extra Cheese Added: "+this.cheese+"\n";
+           if(isExtraToppingsAdded)
+               this.bill+="Extra Toppings Added: "+this.toppings+"\n";
+           if(isTakeAway)
+               this.bill+="Paperbag Added: "+"20"+"\n";
+           this.bill+="Total Price: "+this.price+"\n";
+           isBillGenerated=true;
+       }
         return this.bill;
     }
 }
